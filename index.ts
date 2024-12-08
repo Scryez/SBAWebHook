@@ -267,7 +267,10 @@ if (process.env.MONITOR_SECRET) {
 let uptimeMemCache = 100;
 
 const DBProcess = async () => {
-    await mongoose.connect(process.env.MONGO_URI as string).then(() => {
+    await mongoose.connect(process.env.MONGO_URI as string, {
+   useNewUrlParser: true,
+   useUnifiedTopology: true
+   }).then(() => {
     app.listen(7053, () => {
         console.log("🙌 Listening for Requests")
     })
