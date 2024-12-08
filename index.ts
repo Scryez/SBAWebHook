@@ -265,7 +265,9 @@ if (process.env.MONITOR_SECRET) {
 }
 
 let uptimeMemCache = 100;
-const DBProcess = await mongoose.connect(process.env.MONGO_URI as string).then(() => {
+
+const DBProcess = async () => {
+    await mongoose.connect(process.env.MONGO_URI as string).then(() => {
     app.listen(7053, () => {
         console.log("🙌 Listening for Requests")
     })
@@ -274,7 +276,7 @@ const DBProcess = await mongoose.connect(process.env.MONGO_URI as string).then((
 requests.deleteMany({}).then(() => {
     console.log("🗑️ Cleared Requests")
 })
-
+}
 app.get("/", async (req, res) => {
     const requests = await webhooks.aggregate([
         {
