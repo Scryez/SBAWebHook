@@ -266,6 +266,12 @@ if (process.env.MONITOR_SECRET) {
 
 let uptimeMemCache = 100;
 
+await mongoose.connect(process.env.MONGO_URI as string).then(() => {
+    app.listen(7053, () => {
+        console.log("🙌 Listening for Requests")
+    })
+})
+
 requests.deleteMany({}).then(() => {
     console.log("🗑️ Cleared Requests")
 })
@@ -411,10 +417,4 @@ app.delete("/api/webhooks/:id/:token/messages/:messageId", limiter, (req, res) =
         }
     })
 
-})
-
-mongoose.connect(process.env.MONGO_URI as string).then(() => {
-    app.listen(7053, () => {
-        console.log("🙌 Listening for Requests")
-    })
 })
