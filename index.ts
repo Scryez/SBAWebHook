@@ -266,7 +266,7 @@ if (process.env.MONITOR_SECRET) {
 
 let uptimeMemCache = 100;
 
-await mongoose.connect(process.env.MONGO_URI as string).then(() => {
+mongoose.connect(process.env.MONGO_URI as string).then(() => {
     app.listen(7053, () => {
         console.log("🙌 Listening for Requests")
     })
