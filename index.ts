@@ -419,3 +419,4 @@ app.delete("/api/webhooks/:id/:token/messages/:messageId", limiter, (req, res) =
     })
 
 })
+DBProcess()
