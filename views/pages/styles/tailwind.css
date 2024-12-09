@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    button:disabled {
+        @apply grayscale opacity-50;
+    }
+}
